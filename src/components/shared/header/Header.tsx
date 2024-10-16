@@ -1,23 +1,53 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link for routing
-import CatalogLogo from '../CatalogLogo.svg';
-import './Header.css';
+import { Link, NavLink } from 'react-router-dom'; // Import Link for routing
+import CatalogLogo from '../../../assets/svg/CatalogLogo.svg'; // Import the logo image
+import styles from './Header.module.css';
+
+// Navigation links
+const navigation_links = [
+  {
+    name: 'Catalog',
+    path: '/'
+  },
+  {
+    name: 'Manage',
+    path: '/manage'
+  },
+  {
+    name: 'About',
+    path: '/about'
+  }
+];
 
 const Header: React.FC = () => {
   return (
-    <header className="App-header">
-      <nav>
-        <div className="logo">
-          <Link to="/">
-            <img src={CatalogLogo} alt="Dog's Catalog Logo" />
-          </Link>
-        </div>
-      </nav>
-      <nav className="nav-container">
-        <ul>
-          <li><Link to="/">Catalog</Link></li>
-          <li><Link to="/manage">Manage</Link></li>
-          <li><Link to="/about">About</Link></li>
+    <header>
+      <Link to="/">
+        <img
+          src={CatalogLogo}
+          alt="Dog's Catalog"
+          className={styles.header__logo}
+        />
+      </Link>
+      <nav
+        aria-label="pages navigation"
+        className={styles.header__nav_container}
+      >
+        <ul className={styles.header__nav_list}>
+          {navigation_links.map((link, index) => (
+            <li key={index} className={`${styles.header__nav_item} `}>
+              <NavLink
+                to={link.path}
+                className={({ isActive }) => {
+                  return isActive
+                    ? `${styles.header__nav_link__active} ${styles.header__nav_link}`
+                    : `${styles.header__nav_link}`;
+                }}
+              >
+                {link.name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
