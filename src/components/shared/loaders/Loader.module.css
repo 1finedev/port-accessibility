@@ -1,0 +1,19 @@
+.dummy-loader {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 3s;
+  animation: dummyLoader 3s infinite;
+}
+
+@keyframes dummyLoader {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
