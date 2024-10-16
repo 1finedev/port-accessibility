@@ -1,10 +1,10 @@
 import React from 'react';
-import './Footer.css';
+import './Footer.module.css';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="App-footer">
-      <p>{new Date().getFullYear()} The Dog Catalog.</p>
+    <footer>
+      <p>&copy; {new Date().getFullYear()} The Dog Catalog.</p>
     </footer>
   );
 };
