@@ -1,34 +1,43 @@
 about page
 
-// changed container from section to div
-// changed helpful resources to h2 from h1
-// changed resources into a description list
-// changed links titles to be more descriptive
+## Changelog
 
-// catalog
+This is not an exhaustive list, due to time crunch, just a few thing i worked on that is not
+explicitly stated in my commit messages
 
-// remove index as map keys
-// change accessible header
+### General
 
-dog card compoent
-// changed h2 to h1
-// removed redundant main element
-// added labels to form
-// changed label text from camel case to normal text
-// changed css class names to bem convention
-// changed height input to type number
-// changed color input to type color
-// removed div wrapping form image
-// made labels more descriptive
+- Changed container from `section` to `div`
+- Changed "Helpful Resources" to `h2` from `h1`
+- Changed resources into a description list
+- Changed link titles to be more descriptive
 
-manage screen
-// changed h2 to h1
-// removed redundant main element
-// added labels to form
-// changed label text from camel case to normal text
-// changed css class names to bem convention
-// changed height input to type number
-// changed color input to type color
-// removed div wrapping form image
-// made labels more descriptive
-/add alt tags
+### Catalog
+
+- Removed index as map keys
+- Changed accessible header
+
+### Dog Card Component
+
+- Changed `h2` to `h1`
+- Removed redundant `main` element
+- Added labels to form
+- Changed label text from camel case to normal text
+- Changed CSS class names to BEM convention
+- Changed height input to type `number`
+- Changed color input to type `color`
+- Removed `div` wrapping form image
+- Made labels more descriptive
+
+### Manage Screen
+
+- Changed `h2` to `h1`
+- Removed redundant `main` element
+- Added labels to form
+- Changed label text from camel case to normal text
+- Changed CSS class names to BEM convention
+- Changed height input to type `number`
+- Changed color input to type `color`
+- Removed `div` wrapping form image
+- Made labels more descriptive
+- Added `alt` tags
