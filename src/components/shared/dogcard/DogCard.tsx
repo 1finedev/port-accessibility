@@ -1,82 +1,161 @@
-import React from 'react';
-import DummyLoader from '../loaders/Loader';
-import styles from './DogCard.module.css';
+import React, { useState } from 'react';
+import DummyLoader from '../../shared/loaders/Loader';
+import styles from './Manage.module.css'; // Import the CSS for styling
 
-interface DogCardProps {
-  id: number; // Add id prop
-  name: string;
-  age: number;
-  height: string;
-  color: string;
-  favoritePortFeature: string;
-  favoriteMeal: string;
-}
+const Manage = () => {
+  const [dogData, setDogData] = useState({
+    name: '',
+    age: '',
+    height: '',
+    color: '',
+    favoriteToy: '',
+    favoriteMeal: ''
+  });
 
-const DogCardCategory = ({
-  label,
-  value
-}: {
-  label: string;
-  value: string | number;
-}) => (
-  <p className={styles.dog_card__category}>
-    <span className={styles.dog_card__category_label}>{label}:</span>
-    <span className={styles.dog_card__category_value}>{value}</span>
-  </p>
-);
+  const [showLoader, setShowLoader] = useState(true);
 
-// added loader to fill up image space before image loads
-// changed button text to be more descriptive
-
-const DogCard: React.FC<DogCardProps> = ({
-  id,
-  name,
-  age,
-  height,
-  color,
-  favoritePortFeature,
-  favoriteMeal
-}) => {
-  // Function to handle the alert
-  const showAlert = () => {
-    alert(`Dog's name is ${name}`);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setDogData({ ...dogData, [name]: value });
   };
 
-  const [showLoader, setShowLoader] = React.useState(true);
-
-  const hideLoader = () => setShowLoader(false);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('New Dog Added:', dogData);
+    setDogData({
+      name: '',
+      age: '',
+      height: '',
+      color: '',
+      favoriteToy: '',
+      favoriteMeal: ''
+    });
+  };
 
   return (
-    <div className={styles.dog_card} key={id}>
-      <div className={styles['dog_card__image-container']}>
+    <main id="main-content" className={styles.manage_container}>
+      <h1>Add a New Dog</h1>
+
+      <form
+        aria-label="Fill the form to add your dog details to our records."
+        onSubmit={handleSubmit}
+        className={styles.form}
+      >
+        <div className={styles.form_group}>
+          <label className={styles.form_group__label} htmlFor="name">
+            Dog Name:{' '}
+          </label>
+          <input
+            id="name"
+            className={styles.form_group__input}
+            type="text"
+            name="name"
+            value={dogData.name}
+            onChange={handleChange}
+            required
+            placeholder="Charlie"
+          />
+        </div>
+        <div className={styles.form_group}>
+          <label className={styles.form_group__label} htmlFor="age">
+            Dog Age:
+          </label>
+
+          <input
+            className={styles.form_group__input}
+            type="number"
+            name="age"
+            id="age"
+            value={dogData.age}
+            onChange={handleChange}
+            required
+            placeholder="3"
+          />
+        </div>
+        <div className={styles.form_group}>
+          <label className={styles.form_group__label} htmlFor="height">
+            Height (centimeters):
+          </label>
+
+          <input
+            className={styles.form_group__input}
+            type="number"
+            name="height"
+            id="height"
+            value={dogData.height}
+            onChange={handleChange}
+            required
+            placeholder="24"
+          />
+        </div>
+        <div className={styles.form_group}>
+          <label className={styles.form_group__label} htmlFor="color">
+            Color:
+          </label>
+
+          <input
+            className={styles.form_group__input}
+            type="color"
+            id="color"
+            name="color"
+            value={dogData.color}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className={styles.form_group}>
+          <label className={styles.form_group__label} htmlFor="favoriteToy">
+            Favorite Toy:
+          </label>
+          <input
+            className={styles.form_group__input}
+            type="text"
+            id="favoriteToy"
+            name="favoriteToy"
+            value={dogData.favoriteToy}
+            onChange={handleChange}
+            required
+            placeholder="Ball"
+          />
+        </div>
+        <div className={styles.form_group}>
+          <label className={styles.form_group__label} htmlFor="favoriteMeal">
+            Favorite Meal:
+          </label>
+          <input
+            className={styles.form_group__input}
+            type="text"
+            id="favoriteMeal"
+            name="favoriteMeal"
+            value={dogData.favoriteMeal}
+            onChange={handleChange}
+            required
+            placeholder="Chicken Nuggets"
+          />
+        </div>
+        <button
+          type="submit"
+          className={styles.submit_button}
+          onClick={() =>
+            alert(`Dog name: ${dogData.name} was added successfully!`)
+          }
+        >
+          Add Dog
+        </button>
+      </form>
+      <div className={styles['form__image-container']}>
         {showLoader && <DummyLoader />}
         <img
-          src={`https://placedog.net/400/400/random?id=${id}`}
-          className={styles.dog_card__image}
-          onLoad={hideLoader}
-          alt=""
+          onLoad={() => setShowLoader(false)}
+          className={styles.form__image}
+          src={`https://placedog.net/1000/300/random?id=128`}
+          alt="Group of three black dogs and one white dog peeking over a fence"
         />
       </div>
-
-      <h2 className={styles.dog_card__title}>{name}</h2>
-
-      <div
-        aria-label={`Details about ${name}`}
-        className={styles.dog_card__categories}
-      >
-        <DogCardCategory label="I.D" value={id} />
-        <DogCardCategory label="Age" value={age} />
-        <DogCardCategory label="Height" value={height} />
-        <DogCardCategory label="Color" value={color} />
-        <DogCardCategory label="Favorite Feature" value={favoritePortFeature} />
-        <DogCardCategory label="Favorite Meal" value={favoriteMeal} />
-      </div>
-      <button className={styles.dog_card__button} onClick={showAlert}>
-        Alert {name}'s name
-        {/* Click here to alert the dog's name */}
-      </button>
-    </div>
+    </main>
   );
 };
 
-export default DogCard;
+export default Manage;

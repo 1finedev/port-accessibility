@@ -1,6 +1,6 @@
 import React from 'react';
-import DogCard from '../../shared/dogcard/DogCard';
-import './Catalog.css'; // Import the CSS for the catalog
+import DogCard from '../../shared/dogcard/DogCard'; // Import the DogCard component
+import styles from './Catalog.module.css'; // Import the CSS for the catalog
 
 const dogs = [
   {
@@ -77,14 +77,14 @@ const dogs = [
 
 const Catalog: React.FC = () => {
   return (
-    <section className="catalog">
-      <h3>Dog's Catalog</h3>
-      <div className="dog-cards-container">
-        {dogs.map((dog, index) => (
-          <DogCard key={index} {...dog} />
+    <main id="main-content" className={styles.catalog}>
+      <h1>Dog's Catalog</h1>
+      <section className={styles.catalog__container}>
+        {dogs.map((dog) => (
+          <DogCard key={dog.id} {...dog} />
         ))}
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

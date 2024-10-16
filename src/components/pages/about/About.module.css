@@ -1,0 +1,77 @@
+/* removed redundant styles for anchor element */
+/* changed button color to blue used in other pages */
+
+.about__container {
+  padding: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  flex-grow: 1;
+}
+
+.about__title {
+  color: #333;
+  font-size: 40px;
+}
+
+.about__subheading {
+  color: #555;
+  font-size: 24px;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.about__text-color {
+  color: #666;
+}
+
+.about__link {
+  color: #0156b2;
+  /* color: green; */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.about__link:hover {
+  text-decoration: underline;
+}
+
+.desc-list-term::after {
+  content: ':';
+}
+
+.desc-list-definition {
+  margin: 0.25rem 0 0.25rem 0;
+}
+
+.desc-list-definition:not(:first-child) {
+  margin-left: 1.125rem;
+}
+
+.about__button-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem;
+}
+
+.about__button {
+  background-color: #0156b2; /* Bootstrap Primary Color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect */
+.about__button:hover {
+  background-color: #014893; /* Darker shade of blue */
+}
+
+/* Focus outline for accessibility */
+.about__button:focus,
+.about__button:focus-visible {
+  outline: 3px solid #80bdff; /* Light blue outline */
+  outline-offset: 2px; /* Offset to separate from button */
+}
