@@ -1,0 +1,114 @@
+.dog_card {
+  background-color: #f4e1c6;
+  border-radius: 12px; /* Rounded corners for a softer look */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for depth */
+  padding: 16px; /* Padding inside the card */
+  text-align: left; /* Align text to the left for better readability */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition effects for hover */
+  display: flex;
+  flex-direction: column;
+}
+
+.dog_card:hover {
+  transform: translateY(-4px); /* Lift effect on hover */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.dog_card__image-container {
+  width: 100%; /* Responsive image */
+  /* height: auto; Maintain aspect ratio */
+  overflow: hidden;
+  border-radius: 12px; /* Match card's corners */
+  min-height: 234px;
+  max-height: 304px;
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    min-height: 304px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    min-height: 288px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    min-height: 238px;
+  }
+}
+
+.dummy-loader {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 3s;
+  animation: dummyLoader 3s infinite;
+}
+
+@keyframes dummyLoader {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.dog_card__image {
+  width: 100%; /* Responsive image */
+  height: 100%;
+}
+
+.dog_card__title {
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+  margin: 12px 0;
+}
+
+.dog_card__categories {
+  flex: 1;
+}
+
+.dog_card__category {
+  display: flex;
+  flex-wrap: wrap;
+  padding-block: 1rem;
+  gap: 2px;
+}
+
+.dog_card__category_label {
+  font-weight: bold;
+  color: #333;
+}
+
+.dog_card__category_value {
+  color: #555;
+}
+
+/* TODO: update colors */
+
+.dog_card__button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  /* background-color: rgb(1, 98, 1); */
+  background-color: #0156b2;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  user-select: none;
+}
+
+.dog_card__button:hover {
+  background-color: #014893;
+  /* background-color: green; */
+}
+
+.dog_card__button:focus {
+  outline: 3px solid #80bdff; /* Light blue outline */
+  outline-offset: 2px; /* Offset to separate from button */
+}

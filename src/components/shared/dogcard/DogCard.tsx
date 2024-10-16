@@ -1,5 +1,6 @@
 import React from 'react';
-import './DogCard.css';
+import DummyLoader from '../loaders/Loader';
+import styles from './DogCard.module.css';
 
 interface DogCardProps {
   id: number; // Add id prop
@@ -11,58 +12,69 @@ interface DogCardProps {
   favoriteMeal: string;
 }
 
-const DogCard: React.FC<DogCardProps> = ({ 
-    id, 
-    name, 
-    age, 
-    height, 
-    color, 
-    favoritePortFeature, 
-    favoriteMeal 
-}) => {
+const DogCardCategory = ({
+  label,
+  value
+}: {
+  label: string;
+  value: string | number;
+}) => (
+  <p className={styles.dog_card__category}>
+    <span className={styles.dog_card__category_label}>{label}:</span>
+    <span className={styles.dog_card__category_value}>{value}</span>
+  </p>
+);
 
+// added loader to fill up image space before image loads
+// changed button text to be more descriptive
+
+const DogCard: React.FC<DogCardProps> = ({
+  id,
+  name,
+  age,
+  height,
+  color,
+  favoritePortFeature,
+  favoriteMeal
+}) => {
   // Function to handle the alert
   const showAlert = () => {
     alert(`Dog's name is ${name}`);
   };
 
+  const [showLoader, setShowLoader] = React.useState(true);
+
+  const hideLoader = () => setShowLoader(false);
+
   return (
-    <div className="dog-card" key={id}>
-      <img 
-        src={`https://placedog.net/400/400/random?id=${id}`}
-        className="dog-image" 
-      />
-      <h3>{name}</h3>
-      <div>
-        <div className="category">
-          <p className="category-label">ID:</p>
-          <p className="category-value">{id}</p>
-        </div>
-        <div className="category">
-          <p className="category-label">Age:</p>
-          <p className="category-value">{age} years</p>
-        </div>
-        <div className="category">
-          <p className="category-label">Height:</p>
-          <p className="category-value">{height}</p>
-        </div>
-        <div className="category">
-          <p className="category-label">Color:</p>
-          <p className="category-value">{color}</p>
-        </div>
-        <div className="category">
-          <p className="category-label">Favorite Feature:</p>
-          <p className="category-value">{favoritePortFeature}</p>
-        </div>
-        <div className="category">
-          <p className="category-label">Favorite Meal:</p>
-          <p className="category-value">{favoriteMeal}</p>
-        </div>
+    <div className={styles.dog_card} key={id}>
+      <div className={styles['dog_card__image-container']}>
+        {showLoader && <DummyLoader />}
+        <img
+          src={`https://placedog.net/400/400/random?id=${id}`}
+          className={styles.dog_card__image}
+          onLoad={hideLoader}
+          alt=""
+        />
       </div>
 
-      <div className="dog-name-button" onClick={showAlert}>
-        Click here to alert the dog's name
+      <h2 className={styles.dog_card__title}>{name}</h2>
+
+      <div
+        aria-label={`Details about ${name}`}
+        className={styles.dog_card__categories}
+      >
+        <DogCardCategory label="I.D" value={id} />
+        <DogCardCategory label="Age" value={age} />
+        <DogCardCategory label="Height" value={height} />
+        <DogCardCategory label="Color" value={color} />
+        <DogCardCategory label="Favorite Feature" value={favoritePortFeature} />
+        <DogCardCategory label="Favorite Meal" value={favoriteMeal} />
       </div>
+      <button className={styles.dog_card__button} onClick={showAlert}>
+        Alert {name}'s name
+        {/* Click here to alert the dog's name */}
+      </button>
     </div>
   );
 };
