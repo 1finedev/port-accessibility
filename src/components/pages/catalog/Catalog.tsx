@@ -1,5 +1,5 @@
 import React from 'react';
-import DogCard from '../../shared/dogcard/DogCard'; // Import the DogCard component
+import DogCard from '../../shared/dogcard/DogCard';
 import styles from './Catalog.module.css'; // Import the CSS for the catalog
 
 const dogs = [
