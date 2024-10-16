@@ -7,19 +7,31 @@ import Footer from './components/shared/footer/Footer';
 import Header from './components/shared/header/Header';
 
 const App = () => {
+  // added skip to content button
+  // removed main element and made individual pages have the main element
+  const handleMainContentFocus = () => {
+    document.getElementById('main-content')?.setAttribute('tabindex', '-1');
+  };
   return (
     <Router>
-      <div className="App">
+      <>
+        <a
+          onClick={handleMainContentFocus}
+          href="#main-content"
+          className="skip_link"
+        >
+          Skip to Main Content
+        </a>
         <Header />
-        <main>
+        <>
           <Routes>
             <Route path="/" element={<Catalog />} />
             <Route path="/manage" element={<Manage />} />
             <Route path="/about" element={<About />} />
           </Routes>
-        </main>
+        </>
         <Footer />
-      </div>
+      </>
     </Router>
   );
 };
