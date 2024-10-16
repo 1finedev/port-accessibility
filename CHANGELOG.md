@@ -20,3 +20,15 @@ dog card compoent
 // changed color input to type color
 // removed div wrapping form image
 // made labels more descriptive
+
+manage screen
+// changed h2 to h1
+// removed redundant main element
+// added labels to form
+// changed label text from camel case to normal text
+// changed css class names to bem convention
+// changed height input to type number
+// changed color input to type color
+// removed div wrapping form image
+// made labels more descriptive
+/add alt tags
