@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DummyLoader from '../../shared/loaders/Loader';
-import styles from './Manage.module.css'; // Import the CSS for styling
+import styles from './DogCard.module.css'; // Import the CSS for styling
 
 const Manage = () => {
   const [dogData, setDogData] = useState({
