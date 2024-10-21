@@ -74,7 +74,6 @@ const Manage = () => {
   return (
     <main id="main-content" className={styles.manage_container}>
       <h1>Add a New Dog</h1>
-
       <form
         aria-label="Fill the form to add your dog details to our records."
         onSubmit={handleSubmit}
