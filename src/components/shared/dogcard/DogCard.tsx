@@ -20,13 +20,22 @@ const DogCardCategory = ({
   value: string | number;
 }) => (
   <p className={styles.dog_card__category}>
-    <span className={styles.dog_card__category_label}>{label}:</span>
-    <span className={styles.dog_card__category_value}>{value}</span>
+    <span
+      className={styles.dog_card__category_label}
+      aria-label={`${label}:`}
+      role="text"
+    >
+      {label}:
+    </span>
+    <span
+      className={styles.dog_card__category_value}
+      aria-label={`${value}`}
+      role="text"
+    >
+      {value}
+    </span>
   </p>
 );
-
-// added loader to fill up image space before image loads
-// changed button text to be more descriptive
 
 const DogCard: React.FC<DogCardProps> = ({
   id,
@@ -37,7 +46,6 @@ const DogCard: React.FC<DogCardProps> = ({
   favoritePortFeature,
   favoriteMeal
 }) => {
-  // Function to handle the alert
   const showAlert = () => {
     alert(`Dog's name is ${name}`);
   };
@@ -52,7 +60,7 @@ const DogCard: React.FC<DogCardProps> = ({
           src={`https://placedog.net/400/400/random?id=${id}`}
           className={styles.dog_card__image}
           onLoad={() => setShowLoader(false)}
-          alt=""
+          alt={`${color} dog named ${name}`}
         />
       </div>
 
@@ -71,7 +79,6 @@ const DogCard: React.FC<DogCardProps> = ({
       </div>
       <button className={styles.dog_card__button} onClick={showAlert}>
         Alert {name}'s name
-        {/* Click here to alert the dog's name */}
       </button>
     </div>
   );

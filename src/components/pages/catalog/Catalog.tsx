@@ -80,9 +80,13 @@ const Catalog: React.FC = () => {
     <main id="main-content" className={styles.catalog}>
       <h1>Dog's Catalog</h1>
       <section className={styles.catalog__container}>
-        {dogs.map((dog) => (
-          <DogCard key={dog.id} {...dog} />
-        ))}
+        <ul>
+          {dogs.map((dog) => (
+            <li key={dog.id}>
+              <DogCard {...dog} />
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );

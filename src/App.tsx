@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.module.css';
 import About from './components/pages/about/About';
 import Catalog from './components/pages/catalog/Catalog';
@@ -9,16 +9,18 @@ import Header from './components/shared/header/Header';
 const App = () => {
   // added skip to content button
   // removed main element and made individual pages have the main element
+
   const handleMainContentFocus = () => {
     document.getElementById('main-content')?.setAttribute('tabindex', '-1');
   };
+
   return (
     <Router>
       <>
         <a
           onClick={handleMainContentFocus}
           href="#main-content"
-          className="skip_link"
+          className="skip__link"
         >
           Skip to Main Content
         </a>

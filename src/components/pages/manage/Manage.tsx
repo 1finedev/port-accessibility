@@ -2,11 +2,21 @@ import React, { useState } from 'react';
 import DummyLoader from '../../shared/loaders/Loader';
 import styles from './Manage.module.css'; // Import the CSS for styling
 
+interface IDogData {
+  [key: string]: string | number;
+  name: string;
+  age: number;
+  height: number;
+  color: string;
+  favoriteToy: string;
+  favoriteMeal: string;
+}
+
 const Manage = () => {
-  const [dogData, setDogData] = useState({
+  const [dogData, setDogData] = useState<IDogData>({
     name: '',
-    age: '',
-    height: '',
+    age: 0,
+    height: 0,
     color: '',
     favoriteToy: '',
     favoriteMeal: ''
@@ -23,15 +33,42 @@ const Manage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('New Dog Added:', dogData);
-    setDogData({
-      name: '',
-      age: '',
-      height: '',
-      color: '',
-      favoriteToy: '',
-      favoriteMeal: ''
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const formValues = {} as IDogData;
+
+    const castToNumber = ['age', 'height'];
+
+    formData.forEach((value, key) => {
+      // ensures numeric values are cast to number
+      if (castToNumber.includes(key)) {
+        formValues[key] = Number(value);
+        return;
+      } else {
+        formValues[key] = value as string;
+      }
     });
+
+    // basic validation
+    const requiredFields = [
+      'name',
+      'age',
+      'height',
+      'color',
+      'favoriteToy',
+      'favoriteMeal'
+    ];
+
+    for (const field of requiredFields) {
+      if (!formValues[field]) {
+        alert('Please fill in all the fields.');
+        return;
+      }
+    }
+
+    setDogData(formValues);
+
+    alert(`Dog name: ${dogData.name} was added successfully!`);
   };
 
   return (
@@ -56,6 +93,8 @@ const Manage = () => {
             onChange={handleChange}
             required
             placeholder="Charlie"
+            aria-required="true"
+            aria-label="Dog's Name"
           />
         </div>
         <div className={styles.form_group}>
@@ -72,6 +111,8 @@ const Manage = () => {
             onChange={handleChange}
             required
             placeholder="3"
+            aria-required="true"
+            aria-label="Dog's Age"
           />
         </div>
         <div className={styles.form_group}>
@@ -88,6 +129,8 @@ const Manage = () => {
             onChange={handleChange}
             required
             placeholder="24"
+            aria-required="true"
+            aria-label="Dog's Height"
           />
         </div>
         <div className={styles.form_group}>
@@ -103,6 +146,8 @@ const Manage = () => {
             value={dogData.color}
             onChange={handleChange}
             required
+            aria-required="true"
+            aria-label="Dog's Color"
           />
         </div>
         <div className={styles.form_group}>
@@ -118,6 +163,8 @@ const Manage = () => {
             onChange={handleChange}
             required
             placeholder="Ball"
+            aria-label="Dog's Favorite Toy"
+            aria-required="true"
           />
         </div>
         <div className={styles.form_group}>
@@ -133,14 +180,14 @@ const Manage = () => {
             onChange={handleChange}
             required
             placeholder="Chicken Nuggets"
+            aria-label="Dog's Favorite Meal"
+            aria-required="true"
           />
         </div>
         <button
           type="submit"
           className={styles.submit_button}
-          onClick={() =>
-            alert(`Dog name: ${dogData.name} was added successfully!`)
-          }
+          aria-label="Add Dog"
         >
           Add Dog
         </button>
@@ -151,7 +198,7 @@ const Manage = () => {
           onLoad={() => setShowLoader(false)}
           className={styles.form__image}
           src={`https://placedog.net/1000/300/random?id=128`}
-          alt="Group of three black dogs and one white dog peeking over a fence"
+          alt=""
         />
       </div>
     </main>

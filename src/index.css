@@ -36,12 +36,12 @@ code {
     monospace;
 }
 
-.skip_link:not(:focus):not(:hover) {
+.skip__link:not(:focus):not(:hover) {
   opacity: 0;
   translate: 0 -4em;
 }
 
-.skip_link {
+.skip__link {
   position: absolute;
   top: 0;
   left: 0;
@@ -54,6 +54,6 @@ code {
   transition: transform 0.1875s ease-out, opacity 0.1875s ease-out;
 }
 
-.skip_link:focus {
+.skip__link:focus {
   top: 0;
 }

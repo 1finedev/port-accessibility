@@ -41,3 +41,10 @@ explicitly stated in my commit messages
 - Removed `div` wrapping form image
 - Made labels more descriptive
 - Added `alt` tags
+
+### Improvements
+
+- Add alt message to dog card image
+- Handle manage page form and basic validation and move alert from inline function
+- Add aria labels to input forms, buttons
+-
