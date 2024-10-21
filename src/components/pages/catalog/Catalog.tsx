@@ -79,8 +79,8 @@ const Catalog: React.FC = () => {
   return (
     <main id="main-content" className={styles.catalog}>
       <h1>Dog's Catalog</h1>
-      <section className={styles.catalog__container}>
-        <ul>
+      <section>
+        <ul className={styles.catalog__container}>
           {dogs.map((dog) => (
             <li key={dog.id}>
               <DogCard {...dog} />
